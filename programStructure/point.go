@@ -13,6 +13,7 @@ func main() {
 
 	pv := f()
 	fmt.Println(*pv)
+	fmt.Println(f() == f())
 }
 
 func f() *int {
