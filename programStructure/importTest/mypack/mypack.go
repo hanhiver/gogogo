@@ -1,4 +1,5 @@
-package mypack
+//package mypack
+package dhan
 
 import "fmt"
 

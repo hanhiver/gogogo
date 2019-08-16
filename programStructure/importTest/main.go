@@ -1,7 +1,8 @@
 package main
 
 import "fmt"
-import "./mypack"
+import "gogogo/programStructure/importTest/mypack/dhan"
+//import "gogogo/programStructure/importTest/mypack/mypack"
 
 func main() {
 	fmt.Println("OK!")
