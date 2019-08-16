@@ -14,9 +14,18 @@ func main() {
 	pv := f()
 	fmt.Println(*pv)
 	fmt.Println(f() == f())
+
+	m := 1
+	fmt.Println(incr(&m))
+	fmt.Println(m)
 }
 
 func f() *int {
 	v := 1
 	return &v
+}
+
+func incr(p *int) int {
+	*p++ // increase the value that pass in to the func.
+	return *p
 }
