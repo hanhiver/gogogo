@@ -16,4 +16,13 @@ func main() {
 	if !*n {
 		fmt.Println()
 	}
+
+	x := 1
+	y := 2
+
+	x, y = y, x
+
+	fmt.Println(x)
+	fmt.Println(y)
+
 }
