@@ -10,11 +10,16 @@ type Point struct {
 }
 
 func main() {
-	var fullhd Point
-	fullhd.x = 1920
-	fullhd.y = 1080
+	var fullhd1 Point
+	// 直接按照成员初始化
+	fullhd1.x = 1920
+	fullhd1.y = 1080
+
+	fullhd := Point{x: 1920, y: 1080}
 	var fullhdp = &fullhd
 
-	fmt.Printf("Width of the fullhd is %d\n", fullhd.x)
-	fmt.Printf("Height of the fullhd is %d\n", fullhdp.y)
+	fmt.Printf("Width of the fullhd is %#v\n", fullhd.x)
+	fmt.Printf("Height of the fullhd is %#v\n", fullhdp.y)
+
+	fmt.Printf("The structure: %#v\n", fullhd)
 }
