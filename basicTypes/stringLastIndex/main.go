@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strings"
 
-	"./basename"
+	"gogogo/basicTypes/stringLastIndex/basename"
 )
 
 var sep = flag.String("s", "/", "separator")
