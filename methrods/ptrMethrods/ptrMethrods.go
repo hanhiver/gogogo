@@ -36,6 +36,7 @@ func main() {
 	fmt.Println(r)
 
 	distance := Point.Distance
-	fmt.Println(distance(r, r))
+	p := Point{2, 5}
+	fmt.Println(distance(r, p))
 
 }
