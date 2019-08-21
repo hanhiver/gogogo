@@ -24,6 +24,8 @@ func (p IntSlice) Swap(i, j int) {
 // Call the sort.Sort to sort the int slice.
 func main() {
 	a := []int{3, 1, 4, 1, 5, 9, 2, 6}
+	fmt.Println(sort.IsSorted(IntSlice(a)))
 	sort.Sort(IntSlice(a))
 	fmt.Printf("%#v\n", a)
+	fmt.Println(sort.IsSorted(IntSlice(a)))
 }
