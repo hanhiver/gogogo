@@ -68,16 +68,17 @@ func main() {
 	x.Add(144)
 	x.Add(9)
 	fmt.Println(x.String())
-	fmt.Printf("%v\n", x.words)
+	fmt.Printf("%#v\n", x)
 
 	y.Add(9)
 	y.Add(42)
+	y.Add(999)
 	fmt.Println(y.String())
-	fmt.Printf("%v\n", y.words)
+	fmt.Printf("%#v\n", y)
 
 	x.UnionWith(&y)
 	fmt.Println(x.String())
-	fmt.Printf("%v\n", x.words)
+	fmt.Printf("%#v\n", x)
 
 	fmt.Println(x.Has(9), x.Has(123))
 }
