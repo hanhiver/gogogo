@@ -1,6 +1,4 @@
-// 使用sync.WaitGroup来同步goroutine的运行。
-// WaitGroup.Add(1)添加一个正在运行的进程数。
-// WaitGroup.Done()释放一个正在运行的进程数。
+// 使用token限制goroutine最大并发数目。
 package main
 
 import (
@@ -13,6 +11,7 @@ func parallelJob(sleepTimes []int) int {
 	sizes := make(chan int)
 
 	var wg sync.WaitGroup
+	var tokens = make(chan struct{}, 3)
 
 	for _, f := range sleepTimes {
 		wg.Add(1)
@@ -20,6 +19,7 @@ func parallelJob(sleepTimes []int) int {
 		go func(s int) {
 			defer wg.Done()
 
+			tokens <- struct{}{} // 获取令牌
 			fmt.Printf("Sleep for %d seconds.\n", s)
 
 			for i := 0; i < s; i++ {
@@ -28,6 +28,7 @@ func parallelJob(sleepTimes []int) int {
 
 			fmt.Printf("Sleep for %d seconds Done\n", s)
 			sizes <- s
+			<-tokens // 释放令牌
 		}(f)
 	}
 
@@ -45,6 +46,6 @@ func parallelJob(sleepTimes []int) int {
 }
 
 func main() {
-	sleepTimes := []int{1, 2, 1, 2, 3, 5}
+	sleepTimes := []int{1, 2, 1, 2, 3, 5, 2, 1, 2, 3}
 	parallelJob(sleepTimes)
 }
