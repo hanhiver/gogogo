@@ -1,3 +1,4 @@
+// 构建两个chan和两个goroutine，互相转发一个uint64的值，看看最后的速度多少Mbps
 package main
 
 import (
@@ -18,7 +19,7 @@ func transmit(recv chan uint64, send chan uint64, stop chan struct{}, wg *sync.W
 			send <- msg
 		case <-stop:
 			count := <-recv
-			fmt.Printf("goroutine stopped, %f Mbps in a seconds. \n", float64(count)*2/1e6)
+			fmt.Printf("goroutine stopped, %f Mbps in a seconds. \n", float64(count)*2*8/1e6)
 			return
 		}
 	}
