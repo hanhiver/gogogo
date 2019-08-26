@@ -11,7 +11,7 @@ var pc [256]byte
 // initOnce确保init在并行环境下的执行安全，确保init执行且被执行一次。
 var initOnce sync.Once
 
-// func init() {
+//func init() {
 // 为了确保多线程安全，init()函数必须用initOnce保护。
 func initMT() {
     fmt.Println("popcount init.")
