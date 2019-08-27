@@ -69,7 +69,7 @@ loop:
 }
 
 func printDiskUsage(nfiles, nbytes int64) {
-	fmt.Printf("%d files %.3f MB\n", nfiles, float64(nbytes)/1e6)
+	fmt.Printf("%d files %.3f GB\n", nfiles, float64(nbytes)/1e9)
 }
 
 var done = make(chan struct{})
@@ -100,12 +100,16 @@ func walkDir(dir string, n *sync.WaitGroup, fileSizes chan<- int64) {
 var sema = make(chan struct{}, 20)
 
 func dirents(dir string) []os.FileInfo {
-	sema <- struct{}{}
+	select {
+	case sema <- struct{}{}:
+	case <-done:
+		return nil // 取消
+	}
 	defer func() { <-sema }()
 
 	entries, err := ioutil.ReadDir(dir)
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "du1: %v\n", err)
+		fmt.Fprintf(os.Stderr, "du4: %v\n", err)
 		return nil
 	}
 	return entries
