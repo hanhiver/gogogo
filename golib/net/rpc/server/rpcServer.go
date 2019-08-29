@@ -1,5 +1,7 @@
 package server
 
+import "fmt"
+
 type Args struct {
 	A, B int
 }
@@ -12,6 +14,7 @@ type Arith int
 
 func (t *Arith) Multiply(args *Args, reply *int) error {
 	*reply = args.A * args.B
+    fmt.Printf("Call get with A = %d, B = %d\n", args.A, args.B)
 	return nil
 }
 
